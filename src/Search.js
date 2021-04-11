@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Book from "./Book";
+import { Link } from "react-router-dom";
 const Search = () => {
   const url = "https://www.googleapis.com/books/v1/volumes?q=";
   const [searchResult, setSearchResult] = useState([]);
@@ -38,10 +38,11 @@ const Search = () => {
         ) : (
           <div className='book-list'>
             {data?.items.map((item) => {
-              const { title, authors, industryIdentifiers } = item.volumeInfo;
+              const { title, authors } = item.volumeInfo;
 
               const author = authors ? authors[0] : "N/A";
-              const id = industryIdentifiers[0].identifier;
+              const id = item.id;
+              const bookUrl = `https://books.google.com/ebooks?id=${id}`;
               return (
                 <div className='single-book-container' data-id={id}>
                   <div className='single-item-container'>
@@ -50,13 +51,19 @@ const Search = () => {
                       {title.substring(0, 30)}
                       {title.length > 30 && "..."}
                     </h3>
-
                     <h4>
                       <span>Author: </span>
                       {author}
                     </h4>
                   </div>
-                  <button className='remove-book-btn'>More Details</button>
+                  <a
+                    href={bookUrl}
+                    alt='/'
+                    className='remove-book-btn'
+                    target='_blank'
+                  >
+                    More Details in Google
+                  </a>
                 </div>
               );
             })}
