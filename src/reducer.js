@@ -17,6 +17,7 @@ const reducer = (state, action) => {
       name: state.newBookName,
       author: state.newBookAuthor,
       status: state.newBookRead,
+      user: state.user,
     };
     let newBookList = [...state.bookList, newBook];
     return {
@@ -32,6 +33,19 @@ const reducer = (state, action) => {
       (book) => book.id !== action.payload
     );
     return { ...state, bookList: newBookList };
+  }
+  if (action.type === "CHANGE_EXISTING") {
+    let newBook = state.bookList.find((book) => book.id === action.payload);
+    let newBookList = state.bookList.filter(
+      (book) => book.id !== action.payload
+    );
+    newBook = { ...newBook, status: !newBook.status };
+    newBookList = [...newBookList, newBook];
+    return { ...state, bookList: newBookList };
+  }
+  if (action.type === "SET_USER") {
+    let newUser = action.payload ? action.payload.nickname : "";
+    return { ...state, user: newUser };
   }
   throw new Error(`No Matching "${action.type}" - action type`);
 };

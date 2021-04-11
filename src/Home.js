@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Book from "./Book";
 import { useProductsContext } from "./Context";
 
 const Home = () => {
   const {
+    user,
     bookList,
     setNewBookName,
     setNewBookAuthor,
@@ -13,10 +14,25 @@ const Home = () => {
     newBookAuthor,
     newBookRead,
   } = useProductsContext();
+  useEffect(() => {
+    localStorage.setItem("bookList", JSON.stringify(bookList));
+  }, [bookList]);
+
   return (
     <div className='content-container'>
       <div className='heading-container'>
         <h1>My Library</h1>
+        <h3>
+          # of Books: {bookList.filter((item) => item.user === user).length}
+        </h3>
+        <h3>
+          # of Books Read:{" "}
+          {
+            bookList
+              .filter((item) => item.user === user)
+              .filter((item) => item.status === true).length
+          }
+        </h3>
       </div>
       <form className='book-input'>
         <input
@@ -45,7 +61,7 @@ const Home = () => {
           }}
         >
           {" "}
-          {newBookRead ? "COMPLETE READING" : "NOT READ YET"}
+          {newBookRead ? "READING COMPLETE" : "NOT READ YET"}
         </button>
         <button
           className='add-btn'
@@ -60,11 +76,17 @@ const Home = () => {
       </form>
       <div className='book-container'>
         <h3>Book List</h3>
-        <div className='book-list'>
-          {bookList?.map((item) => {
-            return <Book item={item} />;
-          })}
-        </div>
+        {bookList.length === 0 ? (
+          <h3>Your Book List is Empty. Add Your First Book!</h3>
+        ) : (
+          <div className='book-list'>
+            {bookList
+              .filter((item) => item.user === user)
+              ?.map((item) => {
+                return <Book item={item} />;
+              })}
+          </div>
+        )}
       </div>
     </div>
   );

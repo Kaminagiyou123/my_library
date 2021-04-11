@@ -2,10 +2,14 @@ import React from "react";
 import { useProductsContext } from "./Context";
 const Book = ({ item }) => {
   const { id, name, author, status } = item;
-  const { removeBook } = useProductsContext();
+  const { removeBook, changeExistingStatus } = useProductsContext();
   const remove = (e) => {
     e.preventDefault();
     removeBook(parseInt(e.target.parentElement.dataset.id));
+  };
+  const changeStatus = (e) => {
+    e.preventDefault();
+    changeExistingStatus(parseInt(e.target.parentElement.dataset.id));
   };
 
   return (
@@ -21,8 +25,11 @@ const Book = ({ item }) => {
           {author}
         </h4>
       </div>
-      <button className={status ? "single-book-btn" : "single-book-btn-alert"}>
-        {status ? "COMPLETE READING" : "NOT READ YET"}
+      <button
+        className={status ? "single-book-btn" : "single-book-btn-alert"}
+        onClick={changeStatus}
+      >
+        {status ? "READING COMPLETE" : "NOT READ YET"}
       </button>
       <button className='remove-book-btn' onClick={remove}>
         REMOVE BOOK

@@ -1,14 +1,28 @@
+import userEvent from "@testing-library/user-event";
 import React, { useContext, useReducer } from "react";
 import reducer from "./reducer";
+const getLocalRecord = () => {
+  let record = localStorage.getItem("bookList");
+  if (record) {
+    return JSON.parse(localStorage.getItem("bookList"));
+  } else {
+    return [];
+  }
+};
 const initialState = {
-  bookList: [],
+  bookList: [...getLocalRecord()],
   newBookName: "",
   newBookAuthor: "",
   newBookRead: false,
+  user: "",
 };
+
 const ProductsContext = React.createContext();
 export const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const setUser = (user) => {
+    dispatch({ type: "SET_USER", payload: user });
+  };
 
   const setNewBookName = (title) => {
     dispatch({ type: "SET_TITLE", payload: title });
@@ -28,6 +42,12 @@ export const ProductsProvider = ({ children }) => {
       payload: item,
     });
   };
+  const changeExistingStatus = (item) => {
+    dispatch({
+      type: "CHANGE_EXISTING",
+      payload: item,
+    });
+  };
 
   return (
     <ProductsContext.Provider
@@ -38,6 +58,8 @@ export const ProductsProvider = ({ children }) => {
         setReadStatues,
         addToLibrary,
         removeBook,
+        changeExistingStatus,
+        setUser,
       }}
     >
       {children}
