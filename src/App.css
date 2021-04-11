@@ -1,38 +1,125 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+
+* {
+  font-family: "Patrick Hand", cursive;
+}
+/* navbar */
+nav {
+  position: fixed;
+  width: 100%;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+li {
+  float: left;
+  background-color: #333;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+li a {
+  display: block;
   color: white;
+  text-align: center;
+  padding: 24px 30px;
+  text-decoration: none;
+  font-size: xx-large;
 }
-
-.App-link {
+li a:hover {
+  background-color: #111;
   color: #61dafb;
 }
+/* home */
+.content-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 90px;
+}
+.heading-container {
+  width: 30%;
+  background-color: #61dafb;
+  border: 4px black solid;
+  margin: auto;
+  margin-top: 5vh;
+}
+/* book input */
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.book-input {
+  margin-top: 2vh;
+  padding-right: max(60px, 15%);
+  padding-left: max(60px, 15%);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.input-box {
+  height: 5vh;
+  width: 20vw;
+  font-size: x-large;
+  background-color: white;
+  opacity: 0.5;
+  border: 3px black solid;
+}
+.read-btn {
+  background-color: greenyellow;
+  border: 5px lightgrey solid;
+  border: none;
+}
+
+.read-btn-alert {
+  background-color: lightcoral;
+  border-radius: 2rem;
+  border: none;
+}
+.add-btn {
+  color: black;
+  font-weight: bold;
+  background-color: #61dafb;
+  border-radius: 2rem;
+  border: none;
+}
+.book-container {
+  margin-top: 1vh;
+  margin-left: 5vw;
+  width: 90%;
+}
+.book-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.single-book-container {
+  padding: 2px;
+  margin: 5px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 1rem;
+  background-color: lightgrey;
+  width: 10vw;
+  height: 25vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+span {
+  color: #61dafb;
+}
+.single-book-btn {
+  background-color: lightcoral;
+  border-radius: 1rem;
+  border: none;
+  margin: auto;
+  margin-bottom: 5vh;
+}
+.single-item-container {
+  background: white;
+  padding: 1px;
+  margin: 3px;
+  border-radius: 1rem;
 }
