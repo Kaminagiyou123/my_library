@@ -142,3 +142,36 @@ span {
   background-color: greenyellow;
   font-size: large;
 }
+/* search page */
+
+.book-input {
+  padding-top: 5vh;
+  margin-top: 5vh;
+
+  justify-content: center;
+}
+.book-search-box {
+  width: 30%;
+  font-size: xx-large;
+
+  border: none;
+  background-color: white;
+  opacity: 0.5;
+  border: 3px black solid;
+}
+.search-btn {
+  color: black;
+  font-weight: bold;
+  background-color: #61dafb;
+
+  border: none;
+  width: 10%;
+  margin-left: 0;
+  justify-content: none;
+}
+
+.book-container {
+  margin-top: 10vh;
+  margin-left: 5vw;
+  width: 90%;
+}
