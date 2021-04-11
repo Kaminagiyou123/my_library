@@ -110,16 +110,27 @@ li a:hover {
 span {
   color: #61dafb;
 }
-.single-book-btn {
+.single-book-btn-alert {
   background-color: lightcoral;
   border-radius: 1rem;
   border: none;
   margin: auto;
-  margin-bottom: 5vh;
+  margin-bottom: 2vh;
+}
+.single-book-btn {
+  background-color: greenyellow;
+  border-radius: 1rem;
+  border: none;
+  margin: auto;
+  margin-bottom: 2vh;
 }
 .single-item-container {
   background: white;
   padding: 1px;
   margin: 3px;
   border-radius: 1rem;
+}
+.remove-book-btn {
+  background-color: black;
+  color: white;
 }
