@@ -13,7 +13,7 @@ const reducer = (state, action) => {
   }
   if (action.type === "ADD_BOOK") {
     let newBook = {
-      id: state.bookList.length + 1,
+      id: Date.now(),
       name: state.newBookName,
       author: state.newBookAuthor,
       status: state.newBookRead,
@@ -51,7 +51,7 @@ const reducer = (state, action) => {
   if (action.type === "ADD_SEARCH") {
     const { title, author } = action.payload;
     let newBook = {
-      id: state.bookList.length + 1,
+      id: Date.now(),
       name: title,
       author: author,
       status: false,

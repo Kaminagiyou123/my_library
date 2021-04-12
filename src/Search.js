@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useProductsContext } from "./Context";
 const Search = () => {
   const url = "https://www.googleapis.com/books/v1/volumes?q=";
   const [searchResult, setSearchResult] = useState([]);
   const [data, setData] = useState({ totalItems: 0 });
-  const { addSearch } = useProductsContext();
+  const { addSearch, bookList } = useProductsContext();
 
   const searchBooks = async () => {
     const response = await fetch(`${url}${searchResult}`);
@@ -12,6 +12,10 @@ const Search = () => {
     setData(data);
     return data;
   };
+  useEffect(() => {
+    localStorage.setItem("bookList", JSON.stringify(bookList));
+  }, [bookList]);
+
   return (
     <div className='content-container'>
       <form className='book-input'>
