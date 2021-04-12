@@ -17,7 +17,8 @@ const Book = ({ item }) => {
       <div className='single-item-container'>
         <h3>
           <span>Name: </span>
-          {name}
+          {name.substring(0, 30)}
+          {name.length > 30 && "..."}
         </h3>
 
         <h4>

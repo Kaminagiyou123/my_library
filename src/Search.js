@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useProductsContext } from "./Context";
 const Search = () => {
   const url = "https://www.googleapis.com/books/v1/volumes?q=";
   const [searchResult, setSearchResult] = useState([]);
   const [data, setData] = useState({ totalItems: 0 });
+  const { addSearch } = useProductsContext();
 
   const searchBooks = async () => {
     const response = await fetch(`${url}${searchResult}`);
@@ -44,7 +45,22 @@ const Search = () => {
               const id = item.id;
               const bookUrl = `https://books.google.com/ebooks?id=${id}`;
               return (
-                <div className='single-book-container' data-id={id}>
+                <div
+                  className='single-book-container'
+                  data-title={title}
+                  data-author={author}
+                >
+                  <button
+                    className='add_to'
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const title = e.target.parentElement.dataset.title;
+                      const author = e.target.parentElement.dataset.author;
+                      addSearch({ title, author });
+                    }}
+                  >
+                    Add to my Library
+                  </button>
                   <div className='single-item-container'>
                     <h3>
                       <span>Name: </span>

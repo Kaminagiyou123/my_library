@@ -47,6 +47,25 @@ const reducer = (state, action) => {
     let newUser = action.payload ? action.payload.nickname : "";
     return { ...state, user: newUser };
   }
+
+  if (action.type === "ADD_SEARCH") {
+    const { title, author } = action.payload;
+    let newBook = {
+      id: state.bookList.length + 1,
+      name: title,
+      author: author,
+      status: false,
+      user: state.user,
+    };
+    let newBookList = [...state.bookList, newBook];
+    return {
+      ...state,
+      bookList: newBookList,
+      newBookName: "",
+      newBookAuthor: "",
+      newBookRead: false,
+    };
+  }
   throw new Error(`No Matching "${action.type}" - action type`);
 };
 

@@ -49,6 +49,13 @@ export const ProductsProvider = ({ children }) => {
     });
   };
 
+  const addSearch = (item) => {
+    dispatch({
+      type: "ADD_SEARCH",
+      payload: item,
+    });
+  };
+
   return (
     <ProductsContext.Provider
       value={{
@@ -60,6 +67,7 @@ export const ProductsProvider = ({ children }) => {
         removeBook,
         changeExistingStatus,
         setUser,
+        addSearch,
       }}
     >
       {children}
